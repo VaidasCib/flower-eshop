@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Flower Shop</title>
+      <link rel="stylesheet" type="text/css" href="${request.contextPath}/common/header.css" />
+      <link rel="stylesheet" type="text/css" href="${request.contextPath}/common/styles.css" />
+   </h:head>
+   <h:panelGroup id="header" styleClass="page-header">
+      <h:link value="Flower Shop" outcome="index" styleClass="title"/>
+      <ul>
+         <h:panelGroup rendered="#{userStorage.userRole eq 'SELLER'}">
+            <li><h:link value="Create Seller" outcome="createSeller" /></li>
+            <li><h:link value="Create Product" outcome="createProduct" /></li>
+            <li><h:link value="Orders" outcome="orders" /></li>
+         </h:panelGroup>
+         <h:panelGroup rendered="#{not (userStorage.userRole eq 'SELLER')}">
+            <li><h:link value="Cart" outcome="cart" /></li>
+         </h:panelGroup>
+         <h:panelGroup rendered="#{empty userStorage.user}">
+            <li><h:link value="Login" outcome="login" /></li>
+         </h:panelGroup>
+         <h:panelGroup rendered="#{not empty userStorage.user}">
+            <p>Welcome, #{userStorage.user.username}!</p>
+            <h:form>
+               <h:commandButton value="Logout" action="#{loginBean.logout}" />
+            </h:form>
+         </h:panelGroup>
+      </ul>
+   </h:panelGroup>
+</html>

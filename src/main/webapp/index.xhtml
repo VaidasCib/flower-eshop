@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+   <ui:include src="common/header.xhtml" />
+   <h:form>
+      <div class="container">
+         <ui:repeat var="product" value="#{viewProductsBean.allProducts}">
+            <div class="card">
+               <h:graphicImage value="data:image/png;base64,#{viewProductsBean.getImageBase64(product)}" />
+               <h2>#{product.name}</h2>
+               <p class="description">#{product.description}</p>
+               <p class="price">Price: #{product.price}</p>
+               <p class="stock">Stock: #{product.stock}</p>
+               <p class="seller">Seller: #{product.seller.name}</p>
+               <h:commandButton value="View Details" action="#{viewProductsBean.viewProduct(product)}" rendered="#{not (userStorage.userRole eq 'SELLER')}" />
+               <h:commandButton value="Modify" action="#{viewProductsBean.viewProductAdmin(product)}" rendered="#{userStorage.userRole eq 'SELLER'}"/>
+            </div>
+         </ui:repeat>
+      </div>
+   </h:form>
+</h:body>
+</html>

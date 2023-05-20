@@ -1,0 +1,34 @@
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cart</from-outcome>
+            <to-view-id>/cart.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createProduct</from-outcome>
+            <to-view-id>/admin/createProduct.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createSeller</from-outcome>
+            <to-view-id>/admin/createSeller.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>orders</from-outcome>
+            <to-view-id>/admin/orders.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

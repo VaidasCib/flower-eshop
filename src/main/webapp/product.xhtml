@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:body>
+        <ui:include src="common/header.xhtml" />
+        <h:form>
+            <div class="container">
+                <div class="card card-single">
+                    <div class="card-content">
+                        <div class="image-container">
+                            <h:graphicImage value="data:image/png;base64,#{singleProductBean.getImageBase64()}" />
+                        </div>
+                        <div class="details-container">
+                            <h2>#{singleProductBean.product.name}</h2>
+                            <p class="description">#{singleProductBean.product.description}</p>
+                            <p class="price">Price: #{singleProductBean.product.price}</p>
+                            <p class="stock">Stock: #{singleProductBean.product.stock}</p>
+                            <h3>Seller Information:</h3>
+                            <p class="seller">Name: #{singleProductBean.product.seller.name}</p>
+                            <p class="seller">Address: #{singleProductBean.product.seller.address}</p>
+                            <p class="seller">Email: #{singleProductBean.product.seller.email}</p>
+                            <p class="seller">Phone Number: #{singleProductBean.product.seller.phoneNumber}</p>
+                            <p>Enter desired product quantity</p>
+                            <h:inputText value="#{singleProductBean.quantity}">
+                                <f:ajax listener="#{singleProductBean.updateTotalPrice}" render="totalPrice" />
+                            </h:inputText>
+                            <p class="total-price">Total Price: <h:outputText id="totalPrice" value="#{singleProductBean.totalPrice}" /></p>
+                            <h:commandButton value="Add to Cart" action="#{singleProductBean.addToCart(singleProductBean.product)}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

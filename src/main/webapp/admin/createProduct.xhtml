@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h:head>
+      <title>New Product</title>
+   </h:head>
+   <h:body>
+      <ui:include src="../common/header.xhtml" />
+      <h:form enctype="multipart/form-data">
+         <div class="container">
+            <h1>New Product</h1>
+         </div>
+         <div class="container">
+            <h:panelGrid columns="2" columnClasses="label, value">
+               <h:outputLabel for="name" value="Name" />
+               <h:inputText id="name" value="#{createProductBean.productDto.name}" />
+
+               <h:outputLabel for="description" value="Description" />
+               <h:inputTextarea id="description" value="#{createProductBean.productDto.description}" rows="5" />
+
+               <h:outputLabel for="stock" value="Stock" />
+               <h:inputText id="stock" value="#{createProductBean.productDto.stock}" />
+
+               <h:outputLabel for="price" value="Price" />
+               <h:inputText id="price" value="#{createProductBean.productDto.price}" />
+
+               <h:outputLabel for="seller" value="Seller" />
+               <h:selectOneMenu id="seller" value="#{createProductBean.productDto.sellerId}">
+                  <f:selectItems value="#{createProductBean.allSellers}" var="seller"
+                                 itemValue="#{seller.id}" itemLabel="#{seller.name}" />
+               </h:selectOneMenu>
+
+               <h:outputLabel for="image" value="Image" />
+               <h:inputFile id="image" value="#{createProductBean.productDto.imageFile}" />
+
+               <h:commandButton value="Create" action="#{createProductBean.createProduct}" />
+            </h:panelGrid>
+         </div>
+      </h:form>
+   </h:body>
+</f:view>
+</html>

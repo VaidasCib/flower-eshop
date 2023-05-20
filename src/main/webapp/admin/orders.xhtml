@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h:body>
+      <ui:include src="../common/header.xhtml" />
+      <h:form>
+         <div class="order-container">
+            <h2>All Orders</h2>
+            <table class="order-table">
+               <thead>
+               <tr>
+                  <th>Order ID</th>
+                  <th>Delivery Type</th>
+                  <th>Address</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Order Items</th>
+                  <th>Actions</th>
+               </tr>
+               </thead>
+               <tbody>
+               <ui:repeat var="order" value="#{orderBean.allOrders}">
+                  <tr>
+                     <td>#{order.id}</td>
+                     <td>#{order.deliveryType}</td>
+                     <td>#{order.address}</td>
+                     <td>#{order.name}</td>
+                     <td>#{order.email}</td>
+                     <td>#{order.status}</td>
+                     <td>
+                        <ul class="order-items-list">
+                           <ui:repeat var="item" value="#{order.cartItems}">
+                              <li>
+                                 <span>#{item.product.name}</span>
+                                 <span>Quantity: #{item.quantity}</span>
+                              </li>
+                           </ui:repeat>
+                        </ul>
+                     </td>
+                     <td>
+                        <h:commandButton value="Cancel" styleClass="remove-button" action="#{orderBean.cancelOrder(order)}" />
+                        <h:commandButton value="Complete" action="#{orderBean.completeOrder(order)}" />
+                     </td>
+                  </tr>
+               </ui:repeat>
+               </tbody>
+            </table>
+         </div>
+      </h:form>
+   </h:body>
+</f:view>
+</html>
