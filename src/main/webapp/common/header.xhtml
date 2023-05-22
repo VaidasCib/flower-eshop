@@ -9,6 +9,9 @@
       <title>Flower Shop</title>
       <link rel="stylesheet" type="text/css" href="${request.contextPath}/common/header.css" />
       <link rel="stylesheet" type="text/css" href="${request.contextPath}/common/styles.css" />
+      <script type="text/javascript"
+              src="${request.contextPath}/common/script.js">
+      </script>
    </h:head>
    <h:panelGroup id="header" styleClass="page-header">
       <h:link value="Flower Shop" outcome="index" styleClass="title"/>
@@ -25,7 +28,7 @@
             <li><h:link value="Login" outcome="login" /></li>
          </h:panelGroup>
          <h:panelGroup rendered="#{not empty userStorage.user}">
-            <p>Welcome, #{userStorage.user.username}!</p>
+            <p>#{headerBean.greetingsMessage} #{userStorage.user.username}</p>
             <h:form>
                <h:commandButton value="Logout" action="#{loginBean.logout}" />
             </h:form>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="EshopDB" uuid="05e46981-0aaf-4605-9759-4fad85c095d9">
+    <data-source source="LOCAL" name="EshopDB" uuid="fa855636-dbc7-4be6-b2bf-81a927cccf01">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>

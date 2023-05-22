@@ -28,6 +28,10 @@ public abstract class Repository<T> implements Serializable {
         em.persist(entity);
     }
 
+    public T merge(T entity) {
+        return em.merge(entity);
+    }
+
     public T getById(Long id) {
         return em.find(entityClass(), id);
     }
