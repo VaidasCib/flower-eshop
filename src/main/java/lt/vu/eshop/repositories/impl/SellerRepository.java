@@ -7,10 +7,5 @@ import lt.vu.eshop.repositories.Repository;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-@LoggingInterceptorBinding
-public class SellerRepository extends Repository<Seller> implements ISellerRepository {
-    @Override
-    protected Class<Seller> entityClass() {
-        return Seller.class;
-    }
+public class SellerRepository extends Repository<Seller> {
 }

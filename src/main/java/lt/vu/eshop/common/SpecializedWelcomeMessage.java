@@ -1,11 +1,11 @@
 package lt.vu.eshop.common;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Specializes;
 
-@Alternative
+@Specializes
 @ApplicationScoped
-public class AlternativeWelcomeMessage implements IWelcomeMessage {
+public class SpecializedWelcomeMessage extends DefaultWelcomeMessage {
     @Override
     public String getGreetingsMessage() {
         return "Logged in as: ";

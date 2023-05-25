@@ -3,6 +3,7 @@ package lt.vu.eshop.controllers;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.eshop.entities.Product;
+import lt.vu.eshop.log.LoggingInterceptorBinding;
 import lt.vu.eshop.repositories.impl.ProductRepository;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @Named
 @ViewScoped
+@LoggingInterceptorBinding
 public class SingleProductBean implements Serializable {
     @Inject
     private CartBean cartBean;

@@ -6,6 +6,7 @@ import lt.vu.eshop.dto.ProductDTO;
 import lt.vu.eshop.entities.Product;
 import lt.vu.eshop.entities.Seller;
 import lt.vu.eshop.entities.UserRole;
+import lt.vu.eshop.log.LoggingInterceptorBinding;
 import lt.vu.eshop.repositories.impl.ProductRepository;
 import lt.vu.eshop.repositories.impl.SellerRepository;
 import lt.vu.eshop.security.Role;
@@ -33,6 +34,7 @@ import java.util.concurrent.CompletableFuture;
 @ViewScoped
 @Interceptors(RoleInterceptor.class)
 @Role(UserRole.SELLER)
+@LoggingInterceptorBinding
 public class CreateProductBean implements Serializable {
     @Inject
     private ProductRepository productRepository;
@@ -70,12 +72,11 @@ public class CreateProductBean implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        productRepository.persist(product);
 
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {
                 System.out.println("Doing some internal async stuff");
-                Thread.sleep(5000);
+                Thread.sleep(10000);
                 System.out.println("Done");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -85,6 +86,9 @@ public class CreateProductBean implements Serializable {
             throwable.printStackTrace();
             return null;
         });
+
+        // save the product and redirect back while async stuff is running in the background
+        productRepository.persist(product);
 
         goBack();
     }

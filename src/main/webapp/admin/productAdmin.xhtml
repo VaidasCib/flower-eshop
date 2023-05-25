@@ -48,6 +48,16 @@
                   </h:panelGroup>
                </div>
             </div>
+            <h:panelGroup rendered="#{adminProductBean.errorMsg}">
+               <div class="details-container">
+                  <p>Current version of the product:</p>
+                  <p>#{adminProductBean.updatedProduct.name}</p>
+                  <p>#{adminProductBean.updatedProduct.description}</p>
+                  <p>#{adminProductBean.updatedProduct.price}</p>
+                  <p>#{adminProductBean.updatedProduct.stock}</p>
+                  <p>#{adminProductBean.updatedProduct.seller.name}</p>
+               </div>
+            </h:panelGroup>
          </div>
       </div>
    </h:form>

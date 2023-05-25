@@ -5,6 +5,7 @@ import lombok.Setter;
 import lt.vu.eshop.entities.Product;
 import lt.vu.eshop.entities.Seller;
 import lt.vu.eshop.entities.UserRole;
+import lt.vu.eshop.log.LoggingInterceptorBinding;
 import lt.vu.eshop.repositories.impl.ProductRepository;
 import lt.vu.eshop.repositories.impl.SellerRepository;
 import lt.vu.eshop.security.Role;
@@ -32,6 +33,9 @@ import java.util.Random;
 
 @Named
 @ViewScoped
+@Interceptors(RoleInterceptor.class)
+@Role(UserRole.SELLER)
+@LoggingInterceptorBinding
 public class AdminProductBean implements Serializable {
     @Inject
     private ProductRepository productRepository;
@@ -41,6 +45,10 @@ public class AdminProductBean implements Serializable {
     @Getter
     @Setter
     private Product product;
+
+    @Getter
+    @Setter
+    private Product updatedProduct;
 
     @Getter
     @Setter
@@ -73,6 +81,7 @@ public class AdminProductBean implements Serializable {
             productRepository.merge(product);
             goBack();
         } catch (OptimisticLockException e) {
+            updatedProduct = productRepository.getById(product.getId());
             errorMsg = true;
         }
     }

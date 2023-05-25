@@ -10,6 +10,7 @@ import lt.vu.eshop.security.RoleInterceptor;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
@@ -19,12 +20,15 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-@SessionScoped
+@ViewScoped
 @Interceptors(RoleInterceptor.class)
 @Role(UserRole.SELLER)
-public class OrderBean implements Serializable {
+public class OrderBean implements Serializable, IOrderBean {
     @Inject
     private OrderRepository orderRepository;
+
+    @Inject
+    private IOrderStatus orderStatus;
 
     public List<Order> getAllOrders() {
         return orderRepository.getAll();
@@ -34,6 +38,7 @@ public class OrderBean implements Serializable {
         return order.getCartItems();
     }
 
+    @Override
     @Transactional
     public void cancelOrder(Order order) {
         order = orderRepository.getById(order.getId());
@@ -42,6 +47,7 @@ public class OrderBean implements Serializable {
         refresh();
     }
 
+    @Override
     @Transactional
     public void completeOrder(Order order) {
         order = orderRepository.getById(order.getId());
@@ -58,5 +64,9 @@ public class OrderBean implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getStatus(Order order) {
+        return orderStatus.getStatus(order);
     }
 }

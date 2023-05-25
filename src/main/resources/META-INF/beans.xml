@@ -5,13 +5,13 @@
        bean-discovery-mode="all">
 
     <alternatives>
-        <class>lt.vu.eshop.common.AlternativeWelcomeMessage</class>
+        <class>lt.vu.eshop.controllers.admin.TranslatedOrderStatus</class>
     </alternatives>
     <interceptors>
         <class>lt.vu.eshop.log.LoggingInterceptor</class>
     </interceptors>
     <decorators>
-        <class>lt.vu.eshop.log.SellerRepositoryLogger</class>
+        <class>lt.vu.eshop.log.OrderFinishedNotificationSender</class>
     </decorators>
 
 </beans>

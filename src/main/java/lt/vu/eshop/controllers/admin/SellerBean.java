@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lt.vu.eshop.entities.Seller;
 import lt.vu.eshop.entities.UserRole;
+import lt.vu.eshop.log.LoggingInterceptorBinding;
 import lt.vu.eshop.repositories.impl.SellerRepository;
 import lt.vu.eshop.security.Role;
 import lt.vu.eshop.security.RoleInterceptor;
@@ -20,6 +21,7 @@ import java.io.Serializable;
 @ViewScoped
 @Interceptors(RoleInterceptor.class)
 @Role(UserRole.SELLER)
+@LoggingInterceptorBinding
 public class SellerBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
