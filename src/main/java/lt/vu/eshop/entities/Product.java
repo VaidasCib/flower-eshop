@@ -32,4 +32,7 @@ public class Product {
 
     @ManyToOne
     private Seller seller;
+
+    @Version
+    private int version;
 }

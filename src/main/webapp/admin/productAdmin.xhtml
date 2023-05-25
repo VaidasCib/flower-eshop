@@ -41,8 +41,23 @@
                   <h:inputFile id="image" value="#{adminProductBean.imageFile}" />
                   <h:commandButton value="Save" action="#{adminProductBean.saveProduct}" />
                   <h:commandButton styleClass="remove-button" value="Remove" action="#{adminProductBean.removeProduct}" />
+                  <h:panelGroup rendered="#{adminProductBean.errorMsg}">
+                     <p>Error: product was modified by another user</p>
+                     <h:commandButton value="Save Anyway" action="#{adminProductBean.saveAnyway}" />
+                     <h:commandButton value="Don't Save" action="#{adminProductBean.goBack}" />
+                  </h:panelGroup>
                </div>
             </div>
+            <h:panelGroup rendered="#{adminProductBean.errorMsg}">
+               <div class="details-container">
+                  <p>Current version of the product:</p>
+                  <p>#{adminProductBean.updatedProduct.name}</p>
+                  <p>#{adminProductBean.updatedProduct.description}</p>
+                  <p>#{adminProductBean.updatedProduct.price}</p>
+                  <p>#{adminProductBean.updatedProduct.stock}</p>
+                  <p>#{adminProductBean.updatedProduct.seller.name}</p>
+               </div>
+            </h:panelGroup>
          </div>
       </div>
    </h:form>

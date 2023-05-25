@@ -3,6 +3,7 @@ package lt.vu.eshop.security;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.eshop.entities.User;
+import lt.vu.eshop.log.LoggingInterceptorBinding;
 import lt.vu.eshop.repositories.impl.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -15,6 +16,7 @@ import javax.transaction.Transactional;
 
 @Named
 @RequestScoped
+@LoggingInterceptorBinding
 public class LoginBean {
     @Inject
     private UserRepository userRepository;

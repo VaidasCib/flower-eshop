@@ -7,6 +7,7 @@ import lt.vu.eshop.entities.CartItem;
 import lt.vu.eshop.entities.Order;
 import lt.vu.eshop.entities.OrderStatus;
 import lt.vu.eshop.entities.Product;
+import lt.vu.eshop.log.LoggingInterceptorBinding;
 import lt.vu.eshop.repositories.impl.CartItemRepository;
 import lt.vu.eshop.repositories.impl.OrderRepository;
 import lt.vu.eshop.repositories.impl.ProductRepository;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @Named
 @SessionScoped
+@LoggingInterceptorBinding
 public class CartBean implements Serializable {
     @Inject
     private ProductRepository productRepository;
